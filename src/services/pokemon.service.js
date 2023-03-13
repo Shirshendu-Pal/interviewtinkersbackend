@@ -45,7 +45,8 @@ if(data.abilities){
         name: data.name,
         attacks: tempAttacks,
         abilities: tempABilities,
-        image: data.images.large
+        image: data.images.large,
+        hp: data.hp
     })
     user.pokemons.push(pokemon._id)
 
@@ -67,7 +68,7 @@ const getPokemons = async (reqQuery) =>{
     .countDocuments()
 
     let totalPage = count % pageSize === 0 ? count / pageSize : Math.floor(count / pageSize) + 1;
-    console.log(totalPage)
+    // console.log(totalPage)
     return {pokemons, totalPage, totalDocumentCount:count }
 }
 

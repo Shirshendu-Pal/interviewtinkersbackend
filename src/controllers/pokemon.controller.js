@@ -18,7 +18,7 @@ module.exports.addHp = catchAsync(async (req, res) => {
 });
 module.exports.multiplePokemon = catchAsync(async (req, res) => {
     // ;
-    let data = await axios.get("https://api.pokemontcg.io/v2/cards?page=2&pageSize=10")
+    let data = await axios.get("https://api.pokemontcg.io/v2/cards?page=1&pageSize=10")
     const pokemon = await pokemonService.addMultiplePokemons(req.query,data);
     res.status(httpStatus.OK).json({ success: true , data});
 });
