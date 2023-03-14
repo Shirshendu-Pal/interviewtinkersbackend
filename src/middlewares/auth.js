@@ -7,8 +7,8 @@ const config = require('../configuration/config');
 module.exports.authCheck = async (req, res, next) => {
     try {
         let token;
-        if (req.headers.authorization)
-            token = req.headers.authorization;
+        if (req.headers.cookie)
+            token = req.headers.cookie.split("=")[1];
         const payload = jwt.verify(token, config.jwt.secret);
         const tokenDoc = await Token.findOne({ user: payload.sub, type: tokenTypes.REFRESH }).populate("user");
         req.user = tokenDoc.user;

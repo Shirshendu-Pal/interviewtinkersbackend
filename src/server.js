@@ -5,17 +5,19 @@ const mongoose = require("mongoose");
 const config = require('./configuration/config');
 const port = config.serverPort || 8080;
 const router = require("./routes");
+const cookieParser = require("cookie-parser")
 
 const runServer = () => { 
 
     mongoose.connect(config.mongoose.url, config.mongoose.options);
 
-    app.use(cors());
+    app.use(cors({origin: "http://localhost:3000", credentials: true}));
     
     app.use(express.json());
+    app.use(cookieParser())
 
-    app.use("/api", router);
-
+    app.use("/", router);
+   
     app.listen(port, () => {
         console.log(`server listening over http on port ${port}`);
     });

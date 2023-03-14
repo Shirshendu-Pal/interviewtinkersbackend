@@ -20,6 +20,11 @@ module.exports.login = catchAsync(async (req, res) => {
         user = await authService.login(req.body);
    
     const tokens = await tokenService.generateAuthToken(user);
+   
     
-    res.status(httpStatus.OK).json({ user, tokens, success: true});
+    res.status(httpStatus.OK).cookie('accessToken', tokens.access.token, {
+        expires: tokens.access.expires, 
+        secure: false, 
+        httpOnly: true,
+      }).json({ user, success: true});
 });

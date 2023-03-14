@@ -5,11 +5,11 @@ const pokemonRoutes = require("./pokemons.routes");
 
 const routes = [
     {
-        path: "/auth",
+        path: "/",
         route: authRoutes
     },
     {
-        path: "/pokemon",
+        path: "/",
         route: pokemonRoutes
     }
 ]
